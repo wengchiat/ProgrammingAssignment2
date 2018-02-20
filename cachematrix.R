@@ -23,8 +23,8 @@ makeCacheMatrix <- function(x = matrix()) {
         setSolve <- function(solve) m <<- solve
         getSolve <- function() m
         list(set = set, get = get,
-             setsolve = setsolve,
-             getsolve = getsolve)
+             setSolve = setSolve,
+             getSolve = getSolve)
 }
 
 
@@ -41,8 +41,8 @@ cacheSolve <- function(x, ...) {
                 message("getting cached data")
                 return(m)
         }
-        data <- x$get()
-        m <- mean(data, ...)
+        mat <- x$get()
+        m <- solve(mat)
         x$setSolve(m)
         m
 }
